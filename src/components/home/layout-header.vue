@@ -1,22 +1,22 @@
 <template>
   <el-row type="flex" justify="space-between" class="layout-header">
-    <el-col :span="6" class="left-header">
+    <el-col :span="16" class="left-header">
       <i class="el-icon-s-unfold"></i>
       <span>江苏传智播客教育科技股份有限公司</span>
     </el-col>
-    <el-col :span="2" class="layout-right">
+    <el-col :span="3" class="layout-right">
       <img :src="user.photo ? user.photo : defaultImg" alt="">
       <!-- <img src="../../assets/img/avatar.jpg" alt />  -->
-      <el-dropdown trigger="click">
+      <el-dropdown trigger="click" @command='commandAction'>
         <span class="el-dropdown-link">
-          {{ user.name }}
+          {{user.name}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <!-- 具名插槽 dropdown -->
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>个人信息</el-dropdown-item>
-          <el-dropdown-item>git地址</el-dropdown-item>
-          <el-dropdown-item>退出</el-dropdown-item>
+          <el-dropdown-item command='account'>个人信息</el-dropdown-item>
+          <el-dropdown-item command='git'>git地址</el-dropdown-item>
+          <el-dropdown-item command='out'>退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </el-col>
@@ -47,9 +47,24 @@ export default {
         this.user = result.data.data
       })
     },
-    created () {
-      this.getUserInfo()
+    // 绑定菜单项点击事件
+    commandAction (command) {
+      if (command === 'account') {
+        // 跳转账户信息
+
+      } else if (command === 'git') {
+        // 跳转git
+        window.location.href = 'https://github.com/Zjj756661181/toutiao-81'
+      } else if (command === 'out') {
+        // 退出
+        // 擦除本项目在浏览器上的所有前端缓存
+        window.localStorage.clear()
+        this.$router.push('/login')
+      }
     }
+  },
+  created () {
+    this.getUserInfo()
   }
 }
 </script>
@@ -68,7 +83,6 @@ export default {
   .layout-right {
     display: flex;
     align-items: center;
-
     img {
       width: 40px;
       height: 40px;

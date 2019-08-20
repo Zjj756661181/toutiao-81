@@ -2,7 +2,7 @@
   <!-- 最外边容器 -->
   <el-container>
     <!-- 左侧栏容器 -->
-    <el-aside class="el-aside">
+    <el-aside style='width:200px;height:100vh;background-color:#323745'>
       <!-- 左侧菜单 -->
       <layout-aside></layout-aside>
     </el-aside>
@@ -29,11 +29,5 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-  .el-aside {
-    width:200px;
-    height:100vh;
-    background-color:#323745
-  }
-
+<style >
 </style>
