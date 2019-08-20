@@ -105,18 +105,18 @@ export default {
               // 缓存本地
               window.localStorage.setItem(
                 'user-info',
-                JSON.stringify(result.data.data)
+                JSON.stringify(result.data)
               )
               // 跳转页面 home
               this.$router.push('/home')
             })
-            .catch(() => {
-              // 警告弹框 登录不成功
-              this.$message({
-                message: '用户名或验证码错误',
-                type: 'warning'
-              })
-            })
+            // .catch(() => {
+            //   // 警告弹框 登录不成功
+            //   this.$message({
+            //     message: '用户名或验证码错误',
+            //     type: 'warning'
+            //   })
+            // })
         }
       })
     }

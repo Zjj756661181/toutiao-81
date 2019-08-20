@@ -35,16 +35,13 @@ export default {
   methods: {
     // 获取个人信息 get
     getUserInfo () {
-      let userInfo = window.localStorage.getItem('user-info')
-      let token = userInfo ? JSON.parse(userInfo).token : null
-      token && this.$axios({
+      this.$axios({
         // method: 'get', // 默认get接口可以不写
-        url: '/user/profile',
+        url: '/user/profile'
         // 将headers赋值 后端需要的token身份信息
-        headers: { 'Authorization': `Bearer ${token}` }
       }).then(result => {
         // 获取到用户最新的个人资料
-        this.user = result.data.data
+        this.user = result.data
       })
     },
     // 绑定菜单项点击事件
