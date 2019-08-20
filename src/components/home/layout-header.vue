@@ -51,7 +51,7 @@ export default {
     commandAction (command) {
       if (command === 'account') {
         // 跳转账户信息
-
+        this.$router.push('/home/account')
       } else if (command === 'git') {
         // 跳转git
         window.location.href = 'https://github.com/Zjj756661181/toutiao-81'

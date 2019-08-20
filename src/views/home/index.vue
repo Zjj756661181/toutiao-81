@@ -13,7 +13,9 @@
         <layout-header></layout-header>
       </el-header>
       <!-- 中间区域 -->
-      <el-main>zhong</el-main>
+      <el-main style='padding:0;'>
+        <router-view></router-view>
+      </el-main>
     </el-container>
   </el-container>
 </template>
