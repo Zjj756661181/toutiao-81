@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import layoutAside from '../../components/home/layout-aside'// 引入左侧菜单栏
-import layoutHeader from '../../components/home/layout-header'// 引入右侧头部nav
+// import layoutAside from '../../components/home/layout-aside'// 引入左侧菜单栏
+// import layoutHeader from '../../components/home/layout-header'// 引入右侧头部nav
 export default {
   components: {
-    'layout-aside': layoutAside,
-    'layout-header': layoutHeader
+    // 'layout-aside': layoutAside,
+    // 'layout-header': layoutHeader
   }
 }
 </script>
