@@ -27,7 +27,7 @@
 
         <el-form-item>
           <!-- 设置点击事件login -->
-          <el-button @click="login" style="width:100%" type="primary">登录</el-button>
+          <el-button @click.prevent="login" style="width:100%" type="primary">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -57,10 +57,7 @@ export default {
       // 定义数据规则 给elementUI的表单使用
       rules: {
         mobile: [
-          { required: true,
-            message: '手机号不能为空',
-            trigger: 'blur'
-          },
+          { required: true, message: '手机号不能为空', trigger: 'blur' },
           {
             pattern: /^1[3456789]\d{9}$/,
             message: '手机号码格式错误',
@@ -79,7 +76,7 @@ export default {
             trigger: 'blur'
           }
         ],
-        ckeck: [
+        check: [
           {
             // 自定义函数 (return上方）
             validator: func
@@ -110,13 +107,13 @@ export default {
               // 跳转页面 home
               this.$router.push('/home')
             })
-            // .catch(() => {
-            //   // 警告弹框 登录不成功
-            //   this.$message({
-            //     message: '用户名或验证码错误',
-            //     type: 'warning'
-            //   })
-            // })
+            .catch(() => {
+              // 警告弹框 登录不成功
+              this.$message({
+                message: '用户名或验证码错误1',
+                type: 'warning'
+              })
+            })
         }
       })
     }

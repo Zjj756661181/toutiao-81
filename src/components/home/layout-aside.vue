@@ -48,7 +48,7 @@ export default {}
 
 <style lang='less' scoped>
 .layout-aside {
-  width: 201px;
+  width: 200px;
   .title {
     padding: 15px 0;
     text-align: center;

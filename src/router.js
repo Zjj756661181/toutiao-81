@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/home/index.vue'
-import Login from './views/login/index.vue'// 引入login
+import Home from './views/home'
+import Login from './views/login'// 引入login
 import Main from './views/home/main.vue'
+// import HomeComment from '/components/'
 
 Vue.use(Router)
 
@@ -25,6 +26,10 @@ export default new Router({
         {
           path: '',
           component: Main // 默认二级路由
+        },
+        {
+          path: '/home/comment',
+          component: () => import('./views/comment') // 按需加载的写法
         }
       ]
     }
