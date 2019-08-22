@@ -1,5 +1,5 @@
 <template>
-  <el-card>
+  <el-card  v-loading="loading">
     <!-- el-card 具名插槽 header  -->
     <bread-crumb slot="header">
       <!-- 面包屑插槽 具名title -->
@@ -8,7 +8,7 @@
     <!-- ---------------------------------- -->
     <!-- 表格组件 -->
     <!-- :stripe='true' => 带斑马纹属性  -->
-    <el-table v-loading="loading" :data="list" stripe>
+    <el-table :data="list" stripe>
       <el-table-column prop="title" label="标题" width="500"></el-table-column>
       <el-table-column prop="comment_status" label="评论状态" :formatter="formatter"></el-table-column>
       <el-table-column prop="total_comment_count" label="总评论数"></el-table-column>
@@ -22,8 +22,8 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-row>
-      <el-pagination></el-pagination>
+    <el-row type="flex" justify="center" style="margin:20px 0">
+      <el-pagination :page-size="page.pageSize" :total="page.total" :current-page="page.currentPage" @current-change='changePage' background layout="prev, pager, next"></el-pagination>
     </el-row>
   </el-card>
 </template>
@@ -32,10 +32,26 @@
 export default {
   data () {
     return {
-      list: []
+      list: [],
+      // 分页信息
+      // 当前页码 每页多少
+      page: {
+        pageSize: 10,
+        total: 0,
+        currentPage: 1
+      }
     }
   },
+  // ==================================================
   methods: {
+    // ------------------------------------------------
+    // 页码改变时触发
+    changePage (newPage) {
+      // 用最新页码区查询
+      this.page.currentPage = newPage// 将当前页码赋值给data中的变量
+      this.getComments()// 获取当前newPage的数据
+    },
+    // ------------------------------------------------
     // 查询评论列表数据
     getComments () {
       // this.loading = true
@@ -55,6 +71,7 @@ export default {
         this.list = result.data.results
       })
     },
+    // ------------------------------------------------
     // formatter 需要返回结果 需要根据当前值进行返回
     // formatter 是elementUI提供的过滤器是Vue自特性
     // row 当条数据对象
@@ -64,6 +81,7 @@ export default {
     formatter (row, column, cellValue, index) {
       return cellValue ? '正常' : '关闭'
     },
+    // -----------------------------------------------
     // 操作
     closeOrOpen (row) {
       let mess = row.comment_status ? '关闭' : '打开'
@@ -79,10 +97,12 @@ export default {
       })
     }
   },
+  // ================================================
   // 创建实例之后执行
   created () {
     this.getComments()
   }
+  // ================================================
 }
 </script>
 
