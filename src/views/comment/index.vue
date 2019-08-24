@@ -46,7 +46,7 @@ export default {
       // 当前页码 每页多少
       page: {
         pageSize: 10,
-        total: 100,
+        total: 0,
         currentPage: 1
       },
       loading: false
@@ -78,6 +78,7 @@ export default {
       }).then(result => {
         // 取到列表数据给当前的数据对象
         this.list = result.data.results
+        this.page.total = result.data.total_count// 当前总条数
       })
     },
     // ------------------------------------------------
