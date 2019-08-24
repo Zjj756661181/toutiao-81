@@ -37,10 +37,14 @@ export default new Router({
         {
           path: '/home/articles',
           component: () => import('./views/articles') // 按需加载的写法 内容
+        },
+        {
+          path: '/home/publish',
+          component: () => import('./views/publish') // 按需加载的写法 内容
         }
       ]
     }
-    // material
+    // material /home/publish
     // {
     //   path: '/about',
     //   name: 'about',

@@ -7,7 +7,7 @@
     <!-- 工具栏  表单 -->
     <el-form style="margin-left:40px">
       <el-form-item label="文章状态">
-        <el-radio-group>
+        <el-radio-group  @change="refreshList" v-model="formData.status">
           <!-- label必须有值 定义5 -->
           <el-radio :label="5">全部</el-radio>
           <el-radio :label="0">草稿</el-radio>
@@ -56,8 +56,8 @@
             <i class="el-icon-edit"></i>
             修改
           </span>
-          <span style="cursor:pointer">
-            <i class="el-icon-delete"></i>
+          <span style="cursor:pointer" @click="delArticles(item)">
+            <i class="el-icon-delete" ></i>
             删除
           </span>
         </div>
