@@ -20,7 +20,6 @@ export default new Router({
     },
     {
       path: '/home',
-      name: 'home',
       component: Home,
       children: [
         {
@@ -29,11 +28,19 @@ export default new Router({
         },
         {
           path: '/home/comment',
-          component: () => import('./views/comment') // 按需加载的写法
+          component: () => import('./views/comment') // 按需加载的写法 评论
+        },
+        {
+          path: '/home/material',
+          component: () => import('./views/material') // 按需加载的写法 图片/素材
+        },
+        {
+          path: '/home/articles',
+          component: () => import('./views/articles') // 按需加载的写法 内容
         }
       ]
     }
-
+    // material
     // {
     //   path: '/about',
     //   name: 'about',

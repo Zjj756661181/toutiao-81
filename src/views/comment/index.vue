@@ -1,11 +1,11 @@
 <template>
-  <el-card  v-loading="loading">
+  <el-card v-loading="loading">
     <!-- el-card 具名插槽 header  -->
     <bread-crumb slot="header">
       <!-- 面包屑插槽 具名title -->
       <template slot="title">评论列表</template>
     </bread-crumb>
-    <!-- ---------------------------------- -->
+    <!-- ---------------------------------------------------------------------- -->
     <!-- 表格组件 -->
     <!-- :stripe='true' => 带斑马纹属性  -->
     <el-table :data="list" stripe>
@@ -22,8 +22,17 @@
         </template>
       </el-table-column>
     </el-table>
+    <!-- -------------------------------------------------------------------- -->
+    <!-- 分页组件 -->
     <el-row type="flex" justify="center" style="margin:20px 0">
-      <el-pagination :page-size="page.pageSize" :total="page.total" :current-page="page.currentPage" @current-change='changePage' background layout="prev, pager, next"></el-pagination>
+      <el-pagination
+        :page-size="page.pageSize"
+        :total="page.total"
+        :current-page="page.currentPage"
+        @current-change="changePage"
+        background
+        layout="prev, pager, next"
+      ></el-pagination>
     </el-row>
   </el-card>
 </template>
@@ -37,12 +46,12 @@ export default {
       // 当前页码 每页多少
       page: {
         pageSize: 10,
-        total: 0,
+        total: 100,
         currentPage: 1
-      }
+      },
+      loading: false
     }
   },
-  // ==================================================
   methods: {
     // ------------------------------------------------
     // 页码改变时触发
@@ -97,12 +106,11 @@ export default {
       })
     }
   },
-  // ================================================
+  // ----------------------------------------------------
   // 创建实例之后执行
   created () {
     this.getComments()
   }
-  // ================================================
 }
 </script>
 
