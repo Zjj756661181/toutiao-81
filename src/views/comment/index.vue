@@ -73,7 +73,8 @@ export default {
         url: '/articles',
         params: {
           // 查询评论相关的数据
-          response_type: 'comment'
+          response_type: 'comment',
+          page: this.page.currentPage
         }
       }).then(result => {
         // 取到列表数据给当前的数据对象
