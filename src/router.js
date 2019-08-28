@@ -10,6 +10,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '*',
+      component: () => import('./views/404.vue') // 按需加载的写法 图文数据
+    },
+    {
       path: '/',
       name: 'login',
       component: Login
@@ -40,12 +44,23 @@ export default new Router({
         },
         {
           path: '/home/publish',
-          component: () => import('./views/publish') // 按需加载的写法 内容
+          component: () => import('./views/publish') // 按需加载的写法 发布
+        },
+        {
+          path: '/home/publish/:articleId',
+          component: () => import('./views/publish') // 按需加载的写法 编辑
+        },
+        {
+          path: '/home/account',
+          component: () => import('./views/account') // 按需加载的写法 账户信息
+        },
+        {
+          path: '/home/fansdata',
+          component: () => import('./views/fansdata') // 按需加载的写法 图文数据
         }
       ]
     }
-    // material /home/publish
-    // {
+    // {/home/account
     //   path: '/about',
     //   name: 'about',
     //   // route level code-splitting

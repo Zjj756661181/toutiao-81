@@ -1,9 +1,9 @@
 <template>
   <div class="layout-aside">
     <div class="title">
-      <img src="../../assets/img/logo_admin.png" alt />
+      <img :style="{width:collapse ? '30px' : '120px'}" :src="collapse ? closeImg : collapseImg " alt />
     </div>
-    <el-menu background-color="#353b4e" text-color="#adafb5" active-text-color="#ffd04b" router>
+    <el-menu background-color="#353b4e" text-color="#adafb5" active-text-color="#ffd04b" :collapse="collapse" :collapse-transition="false" router>
       <!-- :router="true" 和 router 功能一样 -->
       <el-menu-item  index="/home">
         <i class="el-icon-s-home"></i>
@@ -23,7 +23,7 @@
         <el-menu-item index="/home/comment">评论列表</el-menu-item>
       </el-submenu>
       <!-- 折叠菜单 2 -->
-      <el-submenu index="fans">
+      <el-submenu index="fans"  >
         <!-- 具名插槽 传入内容 -->
         <template slot="title">
           <i class="el-icon-user-solid"></i>
@@ -43,13 +43,25 @@
 </template>
 
 <script>
-export default {}
+import eventBus from '../../utils/eventbus'
+export default {
+  data () {
+    return {
+      collapse: false,
+      collapseImg: require('../../assets/img/logo_admin.png'),
+      closeImg: require('../../assets/img/toutiao.png')
+    }
+  },
+  created () {
+    eventBus.$on('collapseOrClose', () => {
+      this.collapse = !this.collapse
+    })
+  }
+}
 </script>
 
 <style lang='less' scoped>
 .layout-aside {
-  position: fixed;
-  width: 200px;
   .title {
     padding: 15px 0;
     text-align: center;

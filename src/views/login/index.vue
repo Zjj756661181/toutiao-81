@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import { LoginByMobile } from '../../api/api'
 export default {
   data () {
     var func = function (rule, value, callback) {
@@ -91,29 +92,15 @@ export default {
       // validate 手动校验表单
       // isOK 是否通过校验
       // result 当前校验结果
-      this.$refs.loginForm.validate(isOK => {
+      this.$refs.loginForm.validate(async isOK => {
         if (isOK) {
-          this.$axios({
-            method: 'post',
-            url: '/authorizations',
-            data: this.formData
-          })
-            .then(result => {
-              // 缓存本地
-              window.localStorage.setItem(
-                'user-info',
-                JSON.stringify(result.data)
-              )
-              // 跳转页面 home
-              this.$router.push('/home')
-            })
-            .catch(() => {
-              // 警告弹框 登录不成功
-              this.$message({
-                message: '用户名或验证码错误1',
-                type: 'warning'
-              })
-            })
+          let result = await LoginByMobile(this.formData)
+          // 缓存本地
+          window.localStorage.setItem('user-info',
+            JSON.stringify(result.data)
+          )
+          // 跳转页面 home
+          this.$router.push('/home')
         }
       })
     }
